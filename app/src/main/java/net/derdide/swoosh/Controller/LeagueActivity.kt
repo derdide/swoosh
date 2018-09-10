@@ -5,12 +5,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_league.*
-import net.derdide.swoosh.Utils.EXTRA_LEAGUE
+import net.derdide.swoosh.Model.Player
 import net.derdide.swoosh.R
+import net.derdide.swoosh.Utils.EXTRA_PLAYER
 
 class LeagueActivity : BaseActivity() {
 
-    var selectedLeague =""
+    var player = Player(league="", skill="")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,9 +19,9 @@ class LeagueActivity : BaseActivity() {
     }
 
     fun leagueNextClicked(view: View) {
-        if (selectedLeague != "") {
+        if (player.league != "") {
             val skillIntent = Intent(this, SkillActivity::class.java)
-            skillIntent.putExtra(EXTRA_LEAGUE, selectedLeague)
+            skillIntent.putExtra(EXTRA_PLAYER, player)
             startActivity(skillIntent)
         }
         else {
@@ -32,7 +33,7 @@ class LeagueActivity : BaseActivity() {
         leagueWomenBtn.isChecked = false
         leagueCoedBtn.isChecked = false
 
-        selectedLeague = "Men"
+        player.league = "Men"
 
     }
 
@@ -40,14 +41,14 @@ class LeagueActivity : BaseActivity() {
         leagueMenBtn.isChecked = false
         leagueCoedBtn.isChecked = false
 
-        selectedLeague = "Women"
+        player.league = "Women"
     }
 
     fun onCoedClicked(view: View){
         leagueWomenBtn.isChecked = false
         leagueMenBtn.isChecked = false
 
-        selectedLeague = "Coed"
+        player.league = "Coed"
     }
 }
 

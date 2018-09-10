@@ -6,27 +6,25 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_skill.*
-import net.derdide.swoosh.Utils.EXTRA_LEAGUE
+import net.derdide.swoosh.Model.Player
 import net.derdide.swoosh.R
-import net.derdide.swoosh.Utils.EXTRA_SKILL
+import net.derdide.swoosh.Utils.EXTRA_PLAYER
 
 class SkillActivity : BaseActivity() {
 
-    var league = ""
-    var selectedSkill = ""
+    lateinit var player : Player
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_skill)
-        league = intent.getStringExtra(EXTRA_LEAGUE)
-        leagueTxt.text = "Selected league : $league"
+        player = intent.getParcelableExtra(EXTRA_PLAYER)
+        leagueTxt.text = "Selected league : ${player.league}"
     }
 
     fun onSkillFinishClicked(view: View){
-        if (selectedSkill != "") {
+        if (player.skill != "") {
             val finishIntent = Intent(this, FinishActivity::class.java)
-            finishIntent.putExtra(EXTRA_LEAGUE, league)
-            finishIntent.putExtra(EXTRA_SKILL, selectedSkill)
+            finishIntent.putExtra(EXTRA_PLAYER, player)
             startActivity(finishIntent)
         }
         else {
@@ -37,13 +35,13 @@ class SkillActivity : BaseActivity() {
 
     fun onBallerClicked(view: View){
         beginnerSkillBtn.isChecked = false
-        selectedSkill = "Baller"
+        player.skill = "Baller"
 
     }
 
     fun onBeginnerClicked(view: View){
         ballerSkillBtn.isChecked = false
-        selectedSkill = "Beginner"
+        player.skill = "Beginner"
 
     }
 
