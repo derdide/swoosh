@@ -1,12 +1,12 @@
-package net.derdide.swoosh
+package net.derdide.swoosh.Controller
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_league.*
-import kotlinx.android.synthetic.main.activity_welcome.*
+import net.derdide.swoosh.Utils.EXTRA_LEAGUE
+import net.derdide.swoosh.R
 
 class LeagueActivity : BaseActivity() {
 
